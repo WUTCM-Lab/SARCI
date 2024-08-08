@@ -1,0 +1,40 @@
+model:
+    multiscale:
+        multiscale_input_channel: 3
+        multiscale_output_channel: 1
+    seq2vec:
+        arch: skipthoughts
+        dir_st: /data
+        type: BayesianUniSkip
+        dropout: 0.25
+        fixed_emb: False
+    embed:
+        embed_dim: 512
+    name: IV_CROSS
+    cuda: True
+dataset:
+    datatype: sydney_iv
+    data_split:
+    data_path: 'data/sydney_iv_precomp/'
+    image_path: 'imgs/'
+    voice_path: 'sydney_voice/'
+    batch_size: 32
+    batch_size_val: 32
+    workers: 0
+    voice_samp: 64600
+optim:
+    epochs: 200
+    lr: 0.0002
+    lr_decay_param: 0.7
+    lr_update_epoch: 20
+    margin: 0.2
+    resume: False
+logs:
+    eval_step: 1
+    print_freq: 1
+    ckpt_save_path: "checkpoint_sydney_iv/"
+    logger_name: 'logs_sydney_iv/'
+k_fold:
+    experiment_name: 'MODEL'
+    nums: 5
+    current_num: 0
